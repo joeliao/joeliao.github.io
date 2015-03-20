@@ -25,7 +25,11 @@ define([
     "dojo/dom-attr",
     "dojo/on",
     "dojo/query",
-    "esri/dijit/LocateButton"
+    "esri/dijit/LocateButton",
+     "esri/symbols/PictureMarkerSymbol",
+     "esri/SpatialReference",
+     "esri/geometry/Point",
+      "esri/graphic"
 ], function (
     dom,
     coreFx,
@@ -36,7 +40,11 @@ define([
     domAttr,
     on,
     query,
-    LocateButton
+    LocateButton,
+    PictureMarkerSymbol,
+    Graphic,
+    SpatialReference,
+    Point
 ) {
     return {
         showLoadingIndicator: function () {
@@ -154,15 +162,59 @@ define([
                 map: map,
                 highlightLocation: false,
                 setScale: false,
-                scale: 12,
-                useTracking:true,
-                centerAt: false
+                scale: 15,
+                useTracking:false,
+                centerAt: true,
+                symbol: new PictureMarkerSymbol('images/blue-dot.png', 21, 21)
             }, domConstruct.create('div'));
             currentLocation.startup();
             // handle click event of geolocate button
             on(createLocationDiv, 'click', lang.hitch(this, function (evt) {
                 // trigger locate method of locate button widget
-                currentLocation.locate();
+                //console.log(currentLocation);
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(zoomToLocation, locationError);
+                }
+
+                function zoomToLocation(location) {
+                    //console.log(location);
+                    var pt = esri.geometry.geographicToWebMercator(new esri.geometry.Point(location.coords.longitude, location.coords.latitude));
+                    if (typeof graphic == "undefined") map.locicon = null;
+                    if (!map.locicon) {
+                        var symbol = new esri.symbol.PictureMarkerSymbol('images/blue-dot.png', 40, 40);
+                        map.locicon = new esri.Graphic(pt, symbol);
+                        map.graphics.add(map.locicon);
+                    }
+                    else { //move the graphic if it already exists
+                        map.locicon.setGeometry(pt);
+                    }
+
+                    map.centerAndZoom(pt, 16);
+                }
+
+                function locationError(error) {
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            alert("Location not provided");
+                            break;
+
+                        case error.POSITION_UNAVAILABLE:
+                            alert("Current location not available");
+                            break;
+
+                        case error.TIMEOUT:
+                            alert("Timeout");
+                            break;
+
+                        default:
+                            alert("unknown error");
+                            break;
+                    }
+
+                }
+
+                //currentLocation.locate();
             }));
             // event on locate
             on(currentLocation, "locate", lang.hitch(this, function (evt) {
