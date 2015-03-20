@@ -291,6 +291,25 @@ define([
             });
            
         },
+
+        /**
+        * Display list of issues in right panel
+        * @param{array} featureSet
+        * @param{object} operationalLayer details
+        * @param{object} flagObject for like icon,comments icon, extent change
+        * @param{object} relatedTable - related table data
+        * @memberOf widgets/issue-wall/issue-wall
+        */
+        _replaceColumnWithTypes: function (v,l) {
+            //console.log(v);
+            //console.log(l.layerObject.types);
+            for (var i = 0; i < l.layerObject.types.length; i++) {
+                if (v == l.layerObject.types[i].id)
+                    return l.layerObject.types[i].name;
+            }
+            return v;
+        },
+
         /**
         * Display list of issues in right panel
         * @param{array} featureSet
@@ -322,10 +341,12 @@ define([
                 for (i = 0; i < featureSet.length; i++) {
                     // get header title of each issue details
                     issueTitleName = this.issueDetailsHelper.getIssueDetailsTitle(featureSet[i].attributes, this.operationalLayerDetails, true);
-
+                    issueTitleName = this.issueDetailsHelper.getIssueDetailsTitle(featureSet[i].attributes, this.operationalLayerDetails, true);
+                    //console.log(this.operationalLayerDetails);
                     //modified by Xiongjiu
-                    issueTitleName = "<b>Public Input Type</b>: <u>" + featureSet[i].attributes["PUBLICINPUT"] + "</u><br>" + "<b>Description</b>: <I>"+featureSet[i].attributes["Description"]+"</I>";
+                    issueTitleName = "<b>Public Input Type</b>: <u>" + this._replaceColumnWithTypes(featureSet[i].attributes["PUBLICINPUT"], this.operationalLayerDetails) + "</u><br>" + "<b>Description</b>: <I>" + featureSet[i].attributes["Description"] + "</I>";
 
+                   // console.log(featureSet[i].attributes["PUBLICINPUT"]+"---"+this._replaceColumnWithTypes(featureSet[i].attributes["PUBLICINPUT"], this.operationalLayerDetails));
                     issueListTemplateString = string.substitute(issueItemTemplate, {
                         IssueTitle: issueTitleName
                     });
