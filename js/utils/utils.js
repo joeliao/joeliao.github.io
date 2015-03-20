@@ -180,7 +180,7 @@ define([
                 function zoomToLocation(location) {
                     //console.log(location);
                     var pt = esri.geometry.geographicToWebMercator(new esri.geometry.Point(location.coords.longitude, location.coords.latitude));
-                    if (typeof graphic == "undefined") map.locicon = null;
+                    if (typeof map.locicon == "undefined") map.locicon = null;
                     if (!map.locicon) {
                         var symbol = new esri.symbol.PictureMarkerSymbol('images/blue-dot.png', 40, 40);
                         map.locicon = new esri.Graphic(pt, symbol);
