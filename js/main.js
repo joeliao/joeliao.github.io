@@ -114,6 +114,9 @@ define([
                 //Enable queryForGroupItems in templateconfig
                 this.boilerPlateTemplate.templateConfig.queryForGroupItems = true;
 
+                //used as global variable to access map object, modified by Xiongjiu, 03/24/2015
+                mapObject = this;
+
                 //construct the queryparams if found in group info
                 if (this.config.groupInfo.results && this.config.groupInfo.results.length > 0) {
                     lang.mixin(queryParams, this.boilerPlateTemplate.templateConfig.groupParams);
@@ -234,7 +237,7 @@ define([
         */
         _animateSliderContainer: function () {
             //show/ hide right slider panel and change slider button
-            console.log(this);
+            //console.log(this);
             mapsliderWidget = this;
             
             if (this._isSliderOpen) {
@@ -251,7 +254,7 @@ define([
                 domClass.replace(dom.byId("SliderButton"), "esriCTSlideInButton", "esriCTSlideOutButton");
             }
             //on opening/closing right panel map container size will change, so resize map.
-            map.resizeMap();
+            this._resizeMap();
         },
 
         /**
