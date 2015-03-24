@@ -54,7 +54,7 @@ define(({
         noResultsFound: "No reports found in the current map area"
     },
     mobileMenu: {
-        home: "Home",
+        home: "Map View",
         myIssuesView: "My Issues",
         mapView: "Map View",
         listView: "List View",

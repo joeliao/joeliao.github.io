@@ -219,6 +219,8 @@ define([
             this._lastSelectedView.style.display = "none";
             this._lastSelectedView = dojo.byId("CenterContainer");
             dojo.byId("CenterContainer").style.display = "block";
+            //display legend
+            domStyle.set(dom.byId("legend"), "display", "block");
             topic.publish("resizeMap");
         },
 
@@ -230,6 +232,8 @@ define([
             this._lastSelectedView.style.display = "none";
             this._lastSelectedView = dojo.byId("SlideContainermain");
             dojo.byId("SlideContainermain").style.display = "block";
+            //hide legend
+            domStyle.set(dom.byId("legend"), "display", "none");
         },
 
         /**
@@ -294,8 +298,8 @@ define([
         * @memberOf widgets/mobile-menu/mobile-menu
         */
         _signInClicked: function () {
-            location.reload();
-            this.hideMobileMenu();
+           // location.reload();
+          //  this.hideMobileMenu();
         },
 
         /**

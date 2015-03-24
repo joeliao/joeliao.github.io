@@ -25,6 +25,7 @@ define([
     "dojo/dom-attr",
     "dojo/dom-class",
     "dojo/_base/lang",
+    
     "dojo/on",
     "dojo/string",
     "dojo/query",
@@ -425,6 +426,7 @@ define([
         * @memberOf widgets/my-issues/my-issues
         */
         _getIssueFeatureSet: function (parentDiv, getIssueObj, statusParamObj) {
+            
             var issueTitleName, featureLayerQuery, queryTask;
             featureLayerQuery = new Query();
             featureLayerQuery.objectIds = [getIssueObj];
@@ -529,6 +531,8 @@ define([
             };
             this.issueDetailsHelper.showHideCommentIcon(commentParams, issueDetailsParam);
             this._locateIssueOnMap(featureSet, statusParamObj.objField, parentDiv, this.operationalLayerDetails);
+
+           
         },
 
         /**

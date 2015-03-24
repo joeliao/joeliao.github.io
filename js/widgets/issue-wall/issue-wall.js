@@ -38,7 +38,7 @@ define([
     "esri/tasks/query",
     "widgets/issue-comments/issue-comments",
     "esri/tasks/RelationshipQuery"
-], function (declare, dom, domConstruct, domStyle, domAttr, domClass, lang, on, string, query, template, issueItemTemplate, issueDetailsTemplate, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, Graphic, FeatureLayer, Query, IssueComments, RelationshipQuery) {
+], function (declare, dom, domConstruct, domStyle, domAttr,  domClass, lang, on, string, query, template,  issueItemTemplate, issueDetailsTemplate, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, Graphic, FeatureLayer, Query, IssueComments, RelationshipQuery) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         templateString: template,
         extentChangeHandler: null,
@@ -474,6 +474,7 @@ define([
         * @memberOf widgets/issue-wall/issue-wall
         */
         _showIssueDetails: function (parentDiv, featureSet, statusParamObj, issueTitleName, relatedTable) {
+           
             var issueDetailsTemplateString, detailsData, objectID, issueDetailsheader, descriptionValue, commentParams, issueDetailsParam, displayPopupParam;
             domClass.add(this.listContainer, "esriCTHidden");
             domClass.remove(this.listDetailedContainer, "esriCTHidden");
@@ -554,6 +555,23 @@ define([
             };
             this.issueDetailsHelper.showHideCommentIcon(commentParams, issueDetailsParam);
             this._locateIssueOnMap(featureSet, parentDiv, statusParamObj.layerField);
+
+            //if (tdojowindow.getBox().w < 768) {
+
+            //show mobile list view
+            appHeaderObject.mobileMenu.showListView();
+
+            //hide legend
+            
+
+                //Hide my-issues panel if displayed
+               // if (this._myIssuesWidget) {
+              //      this._myIssuesWidget.hideMyIssuesContainer();
+              //  }
+          //  }
+
+           // console.log(this);
+           // console.log("show issue details");
         },
 
         /**

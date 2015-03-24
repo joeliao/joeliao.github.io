@@ -234,6 +234,9 @@ define([
         */
         _animateSliderContainer: function () {
             //show/ hide right slider panel and change slider button
+            console.log(this);
+            mapsliderWidget = this;
+            
             if (this._isSliderOpen) {
                 this._isSliderOpen = false;
                 dom.byId("SlideContainer").style.display = "none";
@@ -248,7 +251,7 @@ define([
                 domClass.replace(dom.byId("SliderButton"), "esriCTSlideInButton", "esriCTSlideOutButton");
             }
             //on opening/closing right panel map container size will change, so resize map.
-            this._resizeMap();
+            map.resizeMap();
         },
 
         /**
@@ -272,6 +275,7 @@ define([
                     style.styleSheet.cssText = cssString;
                     head.appendChild(style);
                 } else {
+                    openSlider = this._animateSliderContainer;
                     domConstruct.create("style", {
                         "type": "text/css",
                         "innerHTML": cssString
@@ -287,6 +291,7 @@ define([
         _createApplicationHeader: function () {
             this._menusList.portalObject = this.config.portalObject;
             this.appHeader = new ApplicationHeader(this._menusList, domConstruct.create("div", {}, dom.byId('headerContainer')));
+            appHeaderObject = this.appHeader;
             //on report issues create geoform
             this.appHeader.reportIssue = lang.hitch(this, function () {
                 this._createGeoForm();
@@ -450,6 +455,7 @@ define([
                 });
                 this._webMapListWidget.onSelectedWebMapClicked = lang.hitch(this, function () {
                     //show listview on webmap selected in mobile view
+                    console.log("map icon clicked");
                     if (this._isWebMapListLoaded && dojowindow.getBox().w < 768) {
                         this.appHeader.mobileMenu.showListView();
                         //Hide my-issues panel if displayed

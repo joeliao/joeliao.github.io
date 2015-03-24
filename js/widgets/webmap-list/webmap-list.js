@@ -717,6 +717,7 @@ define([
                             $("#" + webMapId).slideUp(0);
                             domClass.replace(layerList, "esriCTHidden", "esriCTDisplayList");
                         }
+
                         $('.esriCTDescription', this.parentElement.parentElement).slideDown({
                             duration: 500,
                             easing: "linear"
