@@ -58,7 +58,7 @@ define(({
         myIssuesView: "My Issues",
         mapView: "Map View",
         listView: "List View",
-        reportIt: "Report It",
+        reportIt: "Make Comment",
         signIn: "Sign In",
         signOut: "Sign Out",
         loggedInAs: "Signed in as"
@@ -69,7 +69,7 @@ define(({
         selectFileText: "Select File",
         enterLocation: "2. Select Location",
         completeForm: "2. Complete Form",
-        reportItButton: "Report It",
+        reportItButton: "Make Comment",
         requiredField: "(required)",
         selectDefaultText: "Select&hellip;",
         invalidInputValue: "Please enter valid value.",

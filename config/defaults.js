@@ -28,7 +28,7 @@ define({
     //Example of a template specific property. If your template had several color schemes
     //you could define the default here and setup configuration settings to allow users to choose a different
     //color theme.
-    "theme": "#d15706",
+    "theme": "#1D8E05",
     "bingKey": "", //Enter the url to your organizations bing maps key if you want to use bing basemaps
     //Defaults to arcgis.com. Set this value to your portal or organization host name.
     "sharinghost": location.protocol + "//" + "seattlecitygis.maps.arcgis.com/",
