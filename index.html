@@ -38,6 +38,25 @@
 <body class="claro app-loading">
     <div class="loading-indicator">
     </div>
+    <div data-dojo-type="dijit/Dialog" data-dojo-id="myFormDialog" title="Seattle City Privacy Policy" style="display:none">
+        <h1>Agreement Terms</h1>
+
+        <div style="width:400px; border:1px solid #b7b7b7; background:#fff; padding:8px; margin:0 auto; height:150px; overflow:auto;">
+            Dojo is available under *either* the terms of the modified BSD license *or* the Academic Free License version 2.1. As a recipient of Dojo, you may choose which license to receive this code under (except as noted in per-module LICENSE files). Some modules may not be the copyright of the Dojo Foundation. These modules contain explicit declarations of copyright in both the LICENSE files in the directories in which they reside and in the code itself. No external contributions are allowed under licenses which are fundamentally incompatible with the AFL or BSD licenses that Dojo is distributed under. The text of the AFL and BSD licenses is reproduced below. ------------------------------------------------------------------------------- The "New" BSD License: ********************** Copyright (c) 2005-2010, The Dojo Foundation All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+        </div>
+
+        <br />
+        <table>
+            <input type="radio" data-dojo-type="dijit/form/RadioButton" name="agreement" id="radioOne" value="accept" data-dojo-props="onClick:accept" />
+            <label for="radioOne">
+                I accept the terms of this agreement
+            </label>
+            </td>
+            </tr>
+        </table>
+    </div>
+
+
     <div id="headerContainer" class="esriCTHeaderContainer">
     </div>
     <div class="esriCTMainContainer" id="esriCTMainContainer" style="width: 100% !important">
@@ -86,14 +105,35 @@
     <!-- google plus -->
 
     <script type="text/javascript">
-        require([
-                "application/bootstrapper"
-            ], function (
-                BootStrapper
-            ) {
+
+        require(["dijit/Dialog", "dijit/form/Button", "dijit/form/RadioButton", "dojo/dom", "dojo/dom-style", "application/bootstrapper", "application/utils/utils", "dojo/ready"],
+        function (Dialog, Button, RadioButton, dom, domStyle, BootStrapper, ApplicationUtils,Ready) {
+
+            accept = function () {
+                myFormDialog.hide();
+                ApplicationUtils.showLoadingIndicator();
                 var bootStrapperObj = new BootStrapper();
                 bootStrapperObj.startup();
+            };
+
+            decline = function () {
+                
+            }
+
+            Ready(function () {
+                ApplicationUtils.hideLoadingIndicator();
+                myFormDialog.show();
             });
+        });
+
+        //require([
+        //        "application/bootstrapper"
+        //    ], function (
+        //        BootStrapper
+        //    ) {
+        //        var bootStrapperObj = new BootStrapper();
+        //        bootStrapperObj.startup();
+        //    });
     </script>
 </body>
 </html>
