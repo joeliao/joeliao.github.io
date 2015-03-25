@@ -40,7 +40,9 @@ define([
     "application/utils/issue-details-helper",
     "config/template-config",
     "dojo/query",
-    "dojo/domReady!"
+    "dojo/domReady!",
+    "dijit/Dialog",
+    "dijit/form/RadioButton"
 ], function (
     declare,
     lang,
@@ -65,8 +67,12 @@ define([
     ApplicationUtils,
     IssueDetailsHelper,
     TemplateConfig,
-    query
+    query,
+    Dialog,
+    RadioButton
 ) {
+   
+
     return declare(null, {
         config: {},
         boilerPlateTemplate: null,
@@ -246,6 +252,9 @@ define([
                 dom.byId("CenterContainer").style.width = "99%";
                 dom.byId("SlideContainermain").style.width = "0.1%";
                 domClass.replace(dom.byId("SliderButton"), "esriCTSlideOutButton", "esriCTSlideInButton");
+
+                //show the legend
+                domStyle.set(dom.byId("legend"), "display", "block");
             } else {
                 this._isSliderOpen = true;
                 dom.byId("CenterContainer").style.width = "70%";
