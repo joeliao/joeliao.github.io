@@ -128,6 +128,8 @@ define([
             //Check if application is in mobile view and mobile-menu exist
             if (dojowindow.getBox().w < 768 && this.mobileMenu) {
                 this.mobileMenu.homeMenuClicked(true);
+
+                
             }
         },
 

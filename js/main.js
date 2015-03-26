@@ -381,6 +381,7 @@ define([
                         this._myIssuesWidget.highLightFeature(this._selectedMapDetails.map, this._selectedMapDetails.operationalLayerDetails.layerObject, this._myIssuesWidget.featureObjectId);
                         if (dojowindow.getBox().w < 768) {
                             this.appHeader.mobileMenu.showMapView();
+
                         }
                     }
                 });
