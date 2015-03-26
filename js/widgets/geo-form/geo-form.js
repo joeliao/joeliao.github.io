@@ -132,6 +132,7 @@ define([
                 // Create graphics layer to draw graphics
                 this._graphicsLayer = new GraphicsLayer();
                 this.map.addLayer(this._graphicsLayer);
+                //this.map.addLayer(this.)
 
                 this.basemapExtent = dojo.applicationUtils.getBasemapExtent(response.itemInfo.itemData.baseMap.baseMapLayers);
 
@@ -233,7 +234,7 @@ define([
                     this.layer = this.map.getLayer(opLayers[i].id);
                 } else {
                     if (this.map.getLayer(opLayers[i].id)) {
-                        this.map.removeLayer(this.map.getLayer(opLayers[i].id));
+                        //this.map.removeLayer(this.map.getLayer(opLayers[i].id));
                     }
                 }
             }

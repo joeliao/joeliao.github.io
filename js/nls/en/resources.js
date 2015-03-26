@@ -58,7 +58,7 @@ define(({
         myIssuesView: "My Issues",
         mapView: "Map View",
         listView: "List View",
-        reportIt: "Make Comment",
+        reportIt: "Make Recommendation",
         signIn: "Sign In",
         signOut: "Sign Out",
         loggedInAs: "Signed in as"
@@ -69,7 +69,7 @@ define(({
         selectFileText: "Select File",
         enterLocation: "2. Select Location",
         completeForm: "3. Click button below to submit",
-        reportItButton: "Submit Comment",
+        reportItButton: "Submit Recommendation",
         requiredField: "(required)",
         selectDefaultText: "Select&hellip;",
         invalidInputValue: "Please enter valid value.",
@@ -88,7 +88,7 @@ define(({
         selectLocationTitleText: "(Tap/click on map to select location)",
         geoLocationError: "Current location not available",
         geoLocationOutOfExtent: "Current location is out of basemap extent",
-        geoformTooltip: "Report It"
+        geoformTooltip: "Make Recommendation"
     },
     locator: {
         addressText: "Address:",

@@ -60,6 +60,8 @@ define([
         * @memberOf widgets/app-header/app-header
         */
         postCreate: function () {
+            instructionDialog.show();
+
             var applicationName, applicationIcon;
             if (dojo.configData.applicationName && lang.trim(dojo.configData.applicationName).length !== 0) {
                 applicationName = dojo.configData.applicationName;
@@ -245,6 +247,8 @@ define([
         * @memberOf widgets/app-header/app-header
         */
         _animateMenuContainer: function () {
+            //hide legend
+            domStyle.set(dom.byId("legend"), "display", "none");
             domClass.toggle(this.mobileMenuBurger, "active");
             domClass.toggle(dom.byId('mobileMenuFooter'), "esriCTHidden");
             domClass.toggle(dom.byId('mobilemenu'), "esriCTHideMobileMenu");

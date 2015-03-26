@@ -53,7 +53,7 @@ define([
             myIssuesView: "My Issues",
             mapView: "Map View",
             listView: "List View",
-            reportIt: "Report It",
+            reportIt: "Make Recommendation",
             signIn: "Sign in",
             signOut: "Sign out",
             loggedInAs: "Logged in as"
@@ -105,6 +105,7 @@ define([
                 this.own(on(this.homeMenu, "click", lang.hitch(this, function () {
                     this.homeMenuClicked(true);
                 })));
+                
             } else {
                 domClass.add(this.homeMenu, "esriCTHidden");
             }
@@ -119,6 +120,7 @@ define([
 
             // check if listView is to be shown in list and accordingly set it's display and handle it's click
             if (this._config.listView) {
+
                 domClass.remove(this.listView, "esriCTHidden");
                 this.own(on(this.listView, "click", lang.hitch(this, this._listViewClicked)));
             } else {
@@ -157,7 +159,7 @@ define([
                 domClass.add(this.signOut, "esriCTHidden");
                 domStyle.set(this.mainMenuContainer, "height", "100%");
             }
-
+           
             this.showMapView();
         },
 

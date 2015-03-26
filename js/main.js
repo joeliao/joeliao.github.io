@@ -468,7 +468,7 @@ define([
                 });
                 this._webMapListWidget.onSelectedWebMapClicked = lang.hitch(this, function () {
                     //show listview on webmap selected in mobile view
-                    console.log("map icon clicked");
+                    //console.log("map icon clicked");
                     if (this._isWebMapListLoaded && dojowindow.getBox().w < 768) {
                         this.appHeader.mobileMenu.showListView();
                         //Hide my-issues panel if displayed

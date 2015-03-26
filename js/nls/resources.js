@@ -59,7 +59,7 @@ define({
             myIssuesView: "My Issues", // Shown in menu container of mobile devices to navigate to 'My issues' section
             mapView: "Map View", // Shown in menu container of mobile devices to navigate to map view of the selected webmap
             listView: "List View", // Shown in menu container of mobile devices to navigate to the issue 'List view' of the selected webmap
-            reportIt: "Report It", // Shown in menu container of mobile devices to open the geoform
+            reportIt: "Make Recommendation", // Shown in menu container of mobile devices to open the geoform
             signIn: "Sign In", // Shown in menu container of mobile devices to 'Sign in' to the application
             signOut: "Sign Out", // Shown in menu container of mobile devices to 'Sign out' of the application
             loggedInAs: "Signed in as" // Shown at the bottom of menu container in the mobile devices indicating the name of the logged in user
@@ -70,7 +70,7 @@ define({
             selectFileText: "Select File", // Command button to open a dialog box to select file(s) to be attached
             enterLocation: "2. Select Location", // Shown as the second section of the geoform, where the user can select a location on the map
             completeForm: "2. Complete Form", // Shown as the third section of the geoform, where the user can submit the geoform to report an issue
-            reportItButton: "Report It", // Command button to submit the geoform to report an issue
+            reportItButton: "Make Recommendation", // Command button to submit the geoform to report an issue
             requiredField: "(required)", // Shown next to the field in which the data is mandatory
             selectDefaultText: "Select&hellip;", // Shown in the dropdown field indicating to select an option
             invalidInputValue: "Please enter valid value.", // Shown when user clicks/taps the required field but does not enter the data and comes out of the required field
@@ -89,7 +89,7 @@ define({
             selectLocationTitleText: "(Tap/click on map to select location)", // Appears besides the select location section of the geoform indicating option to select location on the map
             geoLocationError: "Current location not available",  // Shown when the browser returns an error instead of the current geographical position
             geoLocationOutOfExtent: "Current location is out of basemap extent",  // Shown when the current geographical position is out of the basemap extent
-            geoformTooltip: "Report It" // Command button to open the geoform
+            geoformTooltip: "Make Rcommendation" // Command button to open the geoform
         },
         locator: {
             addressText: "Address:", // Shown as a title for a group of addresses returned on performing unified search
