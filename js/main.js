@@ -386,6 +386,7 @@ define([
                         //highlight feature on map it belongs to selected layer of selected map
                         this._myIssuesWidget.highLightFeature(this._selectedMapDetails.map, this._selectedMapDetails.operationalLayerDetails.layerObject, this._myIssuesWidget.featureObjectId);
                         if (dojowindow.getBox().w < 768) {
+                            domStyle.set("CenterContainer", "width","100%");
                             this.appHeader.mobileMenu.showMapView();
 
                         }
@@ -480,6 +481,7 @@ define([
                     //show listview on webmap selected in mobile view
                     //console.log("map icon clicked");
                     if (this._isWebMapListLoaded && dojowindow.getBox().w < 768) {
+                        domStyle.set("CenterContainer", "width", "100%");
                         this.appHeader.mobileMenu.showListView();
                         //Hide my-issues panel if displayed
                         if (this._myIssuesWidget) {
@@ -526,6 +528,7 @@ define([
                     this._selectedMapDetails.webmapList = this._webMapListWidget.filteredWebMapResponseArr;
                     //show listview on webmap selected in mobile view
                     if (this._isWebMapListLoaded && dojowindow.getBox().w < 768) {
+                        domStyle.set("CenterContainer", "width", "100%");
                         this.appHeader.mobileMenu.showListView();
 
                         //Close My-issues panel if present

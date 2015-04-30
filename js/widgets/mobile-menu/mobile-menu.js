@@ -217,7 +217,13 @@ define([
         * Shows map-view and hide the previous view, also resizes the map container.
         * @memberOf widgets/mobile-menu/mobile-menu
         */
+
         showMapView: function () {
+            require(["dojo/dom-style", "dojo/query", "dojo/NodeList-dom"], function (domStyle, query) {
+                domStyle.set("CenterContainer", "width", "100%");
+                domStyle.set("SlideContainermain", "width", "100%");
+                
+            });
             this._lastSelectedView.style.display = "none";
             this._lastSelectedView = dojo.byId("CenterContainer");
             dojo.byId("CenterContainer").style.display = "block";
