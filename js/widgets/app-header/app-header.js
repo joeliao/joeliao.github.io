@@ -188,7 +188,7 @@ define([
             }
             this._showHideMenus();
             this.mobileMenu.updateMenuList(menuList);
-            console.log("inside updateMenuList");
+            //console.log("inside updateMenuList");
         },
 
         /**

@@ -19,7 +19,7 @@ define(({
         error: "Unable to create map",
         zoomInTooltip: "Zoom In",
         zoomOutTooltip: "Zoom Out",
-        geolocationTooltip: "Geolocation"
+        geolocationTooltip: "Use my location"
     },
     main: {
         noGroup: "No group configured"
@@ -115,7 +115,7 @@ define(({
     issueDetailsHelper: {
         likeTooltip: "Like",
         commentTooltip: "Comment",
-        viewOnMapTooltip: "View on Map",
+        viewOnMapTooltip: "Hightlight on Map",
         link: "Link",
         photoAttachmentHeader: "Photo",
         votesUpdateFailure: "Unable to update"

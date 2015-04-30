@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
     <!-- End Responsive -->
-    <title>Rainier Valeey North-South Neighborhood Greenway</title>
+    <title>Rainier Valley North-South Neighborhood Greenway</title>
     <!-- Latest compiled and minified CSS -->
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="js/vendor/bootstrap-3.3.0-dist/css/bootstrap.min.css" />
@@ -34,7 +34,18 @@
             background-color: #1D8E05 !important;
         }
 
-      
+        .helpButton {
+            background-image: url(images/help-button.png);
+            margin-top: 2px;
+        }
+
+        .btn-disable {
+            cursor: default;
+            pointer-events: none;
+            /*Button disabled - CSS color class*/
+            color: #c0c0c0;
+            background-color: #ffffff;
+        }
     </style>
     <!-- Add Legacy browsers css -->
     <!--[if lt IE 9]>
@@ -111,7 +122,7 @@
             </div>
         </div>
         <div class="esriCTFullHeightWidth" id="layoutContainer">
-            <div id="LeftContainer" class="esriCTLeftContainer esriCTBorderRight" style="display:none !important">
+            <div id="LeftContainer" class="esriCTLeftContainer esriCTBorderRight" style="display:none !important; width:0px !important;">
             </div>
             <div id="CenterContainer" class="esriCTCenterContainer">
                 <!-- The ArcGIS API for JavaScript provides bidirectional support.  When viewing the application in an right to left (rtl) language like Hebrew and Arabic the map needs to remain in left-to-right (ltr) mode. Specify this by setting the dir attribute on the div to ltr. -->
@@ -120,28 +131,100 @@
                 <div id="legend" data-dojo-type="dijit/TitlePane" data-dojo-props="title: 'Show/Hide Legend', open:true" style="z-index:100; position:absolute; bottom:30px; left:10px; display:none;">
                         <img src="images/legendv2.png" alt="legend image" />
                 </div>
-                <div data-dojo-type="dijit/Dialog" data-dojo-id="instructionDialog" title="Usage Tips" style="z-index: 999; display: none; width: 70%; max-width: 300px; background-color: #1D8E05 !important; ">
-                    <h3>How to make a recommendation on this web site</h3><br>
-                    <b>On Desktop Browsers</b><br>
-                    <ul>
-                        <li>Click the notepad icon on the upper-right</li>
-                        <li>Fill out the form</li>
-                        <li>Zoom in on the map and click a location of interest</li>
-                        <li>Click the "Submit Recommendation" button to submit it</li>
-                        <li>Add more locations or comment on what others have submitted</li>
-                    </ul>
+                <div data-dojo-type="dijit/Dialog" data-dojo-id="instructionDialog" title="How to Make Recommendations" style="z-index: 999; display: none; width:310px !important; height:310px;  background-color: #1D8E05 !important; ">
+                    <div id="instructionDestopDiv" style="display: block; font-size: 15px; overflow: auto; height: 240px; width: 300px; ">
+                            <b>Important:</b>
+                            <ul>
+                                <li>Recommendations <u>cannot be deleted</u> once submitted, see the "Notes" section for more details.</li>
+                            </ul>
+                            <b>Add a recommendation:</b>
+                            <div style="display:block; font-size:12px;">
+                                <ul>
+                                    <li>Zoom to an area of interest on the map</li>
+                                    <li>Click the notepad/pen icon <img src="images/notepadpen.png" /> in the upper-right corner</li>
+                                    <li>Select a Public Input Category using the drop down menu</li>
+                                    <li>Complete the other 4 questions by typing into the boxes</li>
+                                    <li>On the map, click the exact recommendation location</li>
+                                    <li>Click the “Submit Recommendation” button</li>
+                                    <li>Or click the X button to cancel and not submit the recommendation <img src="images/close-24.png" /></li>
+                                    <li>Repeat these steps to add more recommendations</li>
+                                </ul>
+                            </div>
+                            <b>Add comments to other recommendations:</b>
+                            <div style="display:block; font-size:12px; ">
+                                <ul>
+                                    <li>Click the Comments icon <img src="images/comment-icon.png" /> on a recommendation</li>
+                                    <li>Enter a comment in the pop up box</li>
+                                    <li>Click the plus button to submit the comment</li>
+                                </ul>
+                            </div>
+                            <b>Notes:</b>
+                            <div style="display:block; font-size:12px; ">
+                                <ul>
+                                    <li>Recommendation locations cannot be edited or deleted once the “Submit Recommendations” button is clicked by the user.  Please add a note in the comments if the location should be removed by the SDOT Administrator.</li>
+                                </ul>
+                            </div>
 
-                    <b>On Mobile Browsers</b>
-                    <ul>
-                        <li>Click the upper-right menu</li>
-                        <li>Select "Make Recommendation"</li>
-                        <li>Fill out the form</li>
-                        <li>Zoom in on the map and click a location of interest</li>
-                        <li>Click the ""Submit Recommendation"" button to submit it</li>
-                        <li>Add more locations or comment on what others have submitted</li>
-                    </ul>
-                    <button data-dojo-type="dijit/form/Button" data-dojo-props="onClick:function(){instructionDialog.hide();}">close this</button>
-                </div>
+                            <b> Keyboard shortcuts:</b>
+                            <div style="display: block; font-size: 12px; ">
+                                <ul>
+                                    <li> "Click" hold & drag to pan</li>
+                                    <li>"Shift-click" & draw rectangle to zoom in</li>
+                                    <li>"Ctrl-shift-click" & draw rectangle to zoom out</li>
+                                    <li>"Mouse wheel" & roll forward to zoom in</li>
+                                    <li>"Mouse wheel" & roll backward to zoom out</li>
+                                </ul>
+                            </div>
+                    </div> 
+                    <div id="instructionMobileDiv" style="display: block; font-size: 15px; overflow: auto; height: 250px; width: 230px;">
+                        <b>Important:</b>
+                        <ul>
+                            <li>Recommendations <u>cannot be deleted</u> once submitted, see the "Notes" section for more details.</li>
+                        </ul>
+                        <b>Add a recommendation:</b>
+                        <div style="display:block; font-size:12px;">
+                            <ul>
+                                <li>Zoom to an area of interest on the map</li>
+                                <li>Click the menu icon <img src="images/mobilemenu.png" /> in the upper-right corner</li>
+                                <li>Select "Make Recommendation"</li>
+                                <li>Select a Public Input Category using the drop down menu</li>
+                                <li>Complete the other 4 questions by typing into the boxes</li>
+                                <li>On the map, click the exact recommendation location</li>
+                                <li>Click the “Submit Recommendation” button</li>
+                                <li>Or click the X button to cancel and not submit the recommendation <img src="images/close-24.png" /></li>
+                                <li>Repeat these steps to add more recommendations</li>
+                            </ul>
+                        </div>
+                        <b>Add comments to other recommendations:</b>
+                        <div style="display:block; font-size:12px; ">
+                            <ul>
+                                <li>Click the Comments icon <img src="images/comment-icon.png" /> on a recommendation</li>
+                                <li>Enter a comment in the pop up box</li>
+                                <li>Click the plus button to submit the comment</li>
+                            </ul>
+                        </div>
+                        <b>Notes:</b>
+                        <div style="display:block; font-size:12px; ">
+                            <ul>
+                                <li>Recommendation locations cannot be edited or deleted once the “Submit Recommendations” button is clicked by the user.  Please add a note in the comments if the location should be removed by the SDOT Administrator.</li>
+                            </ul>
+                        </div>
+
+                        <b> Keyboard shortcuts:</b>
+                        <div style="display: block; font-size: 12px; ">
+                            <ul>
+                                <li> "Click" hold & drag to pan</li>
+                                <li>"Shift-click" & draw rectangle to zoom in</li>
+                                <li>"Ctrl-shift-click" & draw rectangle to zoom out</li>
+                                <li>"Mouse wheel" & roll forward to zoom in</li>
+                                <li>"Mouse wheel" & roll backward to zoom out</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <button data-dojo-type="dijit/form/Button" data-dojo-props="onClick:function(){instructionDialog.hide();}">close this</button>
+                    </div> 
+               </div>
                     <div id="mapDiv" dir="ltr" data-dojo-props="region:'center'">
                     </div>
             </div>

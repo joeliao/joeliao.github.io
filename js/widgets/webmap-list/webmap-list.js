@@ -466,6 +466,17 @@ define([
             } catch (err) {
                 dojo.applicationUtils.showError(err.message);
             }
+
+            //add a help button on the map
+            require(["dojo/dom",
+                "dojo/dom-construct",
+                "dojo/dom-style",
+                "dojo/dom-class",
+                "dojo/dom-attr", "dojo/on"], function (dom, domConstruct, domStyle, domClass, domAttr, on) {
+                    var row = domConstruct.toDom("<div class='esriCTBGColor helpButton' title='Help' onclick='instructionDialog.show()'></div>");
+                    domConstruct.place(row, "mapDiv_zoom_slider");
+                   
+                });
         },
 
         /**

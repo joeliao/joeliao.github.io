@@ -307,6 +307,12 @@ define([
             //on report issues create geoform
             this.appHeader.reportIssue = lang.hitch(this, function () {
                 this._createGeoForm();
+                var gf = this.geoformInstance;
+               //this.geoformInstance.map.on("load", function () { console.log("geo-form map loaded"); });
+                
+                setTimeout(function () {  gf._resizeMap(); }, 3000);
+                setTimeout(function () {  gf._resizeMap(); }, 5000);
+                setTimeout(function () {gf._resizeMap();}, 7000);
                 //hide legend tab
                 domStyle.set(dom.byId("legend"), "display", "none");
             });
@@ -428,6 +434,10 @@ define([
         */
         _createWebMapList: function () {
             try {
+                //hide Left panel, as displace:none not working in Firefox
+               // document.getElementById("LeftContainer").style.display = "none !important";
+                domStyle.set("LeftContainer", "width", "0px !important");
+
                 var webMapDescriptionFields, webMapListConfigData, isCreateGeoLocation, zoomInBtn, zoomOutBtn, basemapExtent;
                 //construct json data for the fields to be shown in descriptions, based on the configuration
                 webMapDescriptionFields = {
@@ -517,6 +527,7 @@ define([
                     //show listview on webmap selected in mobile view
                     if (this._isWebMapListLoaded && dojowindow.getBox().w < 768) {
                         this.appHeader.mobileMenu.showListView();
+
                         //Close My-issues panel if present
                         if (this._myIssuesWidget) {
                             this._myIssuesWidget.hideMyIssuesContainer();
@@ -645,6 +656,7 @@ define([
                     });
                     this.geoformInstance.startup();
                 }
+                
             }
         },
 
@@ -683,13 +695,14 @@ define([
         * @memberOf main
         */
         _resizeMap: function () {
+            //console.log("matching geo form map with map");
             try {
-                var mapCenter;
+                //var mapCenter;
                 //Map widget will not work properly if map is resized when the container holding map is having display none
                 //so check if map instance is present and map container's display is block
                 //get the current center of the map, and set the mapdiv's height width to 100% so that it display's completely in its container.
                 if (this._selectedMapDetails.map && domStyle.get(dom.byId("CenterContainer"), "display") === "block") {
-                    mapCenter = this._selectedMapDetails.map.extent.getCenter();
+                    //mapCenter = this._selectedMapDetails.map.extent.getCenter();
                     domStyle.set(dom.byId("mapDiv"), "height", "100%");
                     domStyle.set(dom.byId("mapDiv"), "width", "100%");
                 }
@@ -698,7 +711,7 @@ define([
                     if (this._selectedMapDetails.map && domStyle.get(dom.byId("CenterContainer"), "display") === "block") {
                         this._selectedMapDetails.map.resize();
                         this._selectedMapDetails.map.reposition();
-                        this._selectedMapDetails.map.centerAt(mapCenter);
+                        //this._selectedMapDetails.map.centerAt(mapCenter);
                     }
                 }), 500);
             } catch (err) {

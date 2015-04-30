@@ -41,8 +41,8 @@ define([
     "esri/geometry/Polygon",
     "esri/arcgis/utils",
     "widgets/locator/locator",
-    "widgets/bootstrapmap/bootstrapmap"
-], function (declare, lang, _WidgetBase, _TemplatedMixin, domConstruct, domClass, on, domAttr, array, dom, domStyle, query, dijitTemplate, string, locale, GraphicsLayer, Graphic, Draw, SimpleLineSymbol, SimpleFillSymbol, SimpleMarkerSymbol, Polygon, arcgisUtils, Locator, BootstrapMap) {
+    "widgets/bootstrapmap/bootstrapmap", "esri/geometry/Point", "esri/SpatialReference"
+], function (declare, lang, _WidgetBase, _TemplatedMixin, domConstruct, domClass, on, domAttr, array, dom, domStyle, query, dijitTemplate, string, locale, GraphicsLayer, Graphic, Draw, SimpleLineSymbol, SimpleFillSymbol, SimpleMarkerSymbol, Polygon, arcgisUtils, Locator, BootstrapMap, Point, SpatialReference) {
     return declare([_WidgetBase, _TemplatedMixin], {
         templateString: dijitTemplate,
         lastWebMapSelected: "",
@@ -90,6 +90,7 @@ define([
 
             //hide legend tab
             domStyle.set(dom.byId("legend"), "display", "none");
+
         },
 
         /**
@@ -143,6 +144,7 @@ define([
                 this.toolbar = new Draw(this.map);
                 // activate draw tool
                 this._activateDrawTool();
+
                 // Handle draw-end event which will be fired on selecting location
                 on(this.toolbar, "draw-end", lang.hitch(this, function (evt) {
                     // remove select location error message as location is selected now.
@@ -154,6 +156,11 @@ define([
                 }));
                 // Handle click of Submit button
                 on(this.submitButton, "click", lang.hitch(this, this._submitForm));
+
+               // console.log(this.submitButton);
+                domClass.add(this.submitButton, "btn-disable");
+
+               // this.submitButton.setDisabled(true);
                 // Handle click of close button
                 on(this.closeButton, "click", lang.hitch(this, this.closeForm));
                 // Initialize locator widget
@@ -1415,6 +1422,11 @@ define([
             }
         },
 
+        //enable the submit button
+        _enableSubmittButton: function() {
+            domClass.remove(this.submitButton, "btn-disable");
+        }, 
+
         /**
         * Resize map
         * @memberOf widgets/geo-form/geo-form
@@ -1422,10 +1434,14 @@ define([
         _resizeMap: function () {
             // If geoform is visible
             if (this.map && !domClass.contains(dom.byId('geoformContainerDiv'), "esriCTHidden")) {
-                // re position the map
                 this.map.reposition();
-                // re size the map
-                this.map.resize();
+                this.map.on("click", dojo.hitch(this, function () {
+                    domClass.remove(this.submitButton, "btn-disable");
+                }));
+                var geo = mapObject._webMapListWidget.map.geographicExtent;
+                var cp = new Point((geo.xmin + geo.xmax) / 2, (geo.ymin + geo.ymax) / 2, this.map.spatialReferen);
+                this.map.centerAt(cp);
+                this.map.setZoom(mapObject._webMapListWidget.map.getZoom());
             }
         },
 
@@ -1446,6 +1462,9 @@ define([
         */
         _submitForm: function () {
             var erroneousFields = [], errorMessage;
+            // console.log(this.submitButton);
+            domClass.add(this.submitButton, "btn-disable");
+
             // for all the fields in geo form
             array.forEach(query(".geoFormQuestionare"), lang.hitch(this, function (currentField) {
                 // to check for errors in form before submitting.
@@ -1726,7 +1745,8 @@ define([
                 domClass.replace(this.headerMessageType, "alert-success", "alert-danger");
             }
             // replace node
-            domClass.replace(this.headerMessageDiv, "esriCTVisible", "esriCTHidden");
+           // domClass.replace(this.headerMessageDiv, "esriCTVisible", "esriCTHidden");
+            alert("Thank you! Your inpt has been submitted!");
             // set innerHTML
             domAttr.set(this.headerMessageContent, "innerHTML", innerText);
             // handle close button click of message

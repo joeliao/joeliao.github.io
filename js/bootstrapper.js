@@ -20,14 +20,16 @@ define(["dojo/_base/declare",
      "application/template",
      "widgets/sign-in/sign-in",
      "application/utils/utils",
-     "dojo/_base/lang"
+     "dojo/_base/lang",
+      "dojo/window", "dojo/dom-style"
     ], function (
     declare,
     TemplateConfig,
     Template,
     ApplicationSignIn,
     ApplicationUtils,
-    lang
+    lang,
+    dojowindow, dojoStyle
 ) {
         return declare(null, {
             boilerPlateTemplateObject: null,
@@ -58,6 +60,17 @@ define(["dojo/_base/declare",
                     }
                     ApplicationUtils.showErrorScreen(message);
                     ApplicationUtils.hideLoadingIndicator();
+                });
+
+                //adjust the instruction dialog according to the window size
+                dojo.connect(instructionDialog, "onShow", function () {
+                    if (dojowindow.getBox().w < 500) {
+                        dojoStyle.set("instructionDestopDiv", "display", "none");
+                        dojoStyle.set("instructionMobileDiv", "display", "block");
+                    } else {
+                        dojoStyle.set("instructionDestopDiv", "display", "block");
+                        dojoStyle.set("instructionMobileDiv", "display", "none");
+                    }
                 });
             },
 

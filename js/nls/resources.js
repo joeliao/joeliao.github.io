@@ -20,7 +20,7 @@ define({
             error: "Unable to create map",
             zoomInTooltip: "Zoom In",  // Command button to zoom in to the map
             zoomOutTooltip: "Zoom Out",  // Command button to zoom out of the map
-            geolocationTooltip: "Geolocation"  // Command button to navigate to the current geographical position
+            geolocationTooltip: "Use my location"  // Command button to navigate to the current geographical position
         },
         main: {
             noGroup: "No group configured" // Shown when no group is configured in the configuration file
@@ -116,7 +116,7 @@ define({
         issueDetailsHelper: {
             likeTooltip: "Like", // Command button to vote for an issue
             commentTooltip: "Comment", // Command button to view posted comments and add comments for an issue
-            viewOnMapTooltip: "View on Map", // Command button to locate the issue on map
+            viewOnMapTooltip: "Highlight on Map", // Command button to locate the issue on map
             link: "Link", // Shown as a link when a URL is configured in issue details
             photoAttachmentHeader: "Photo", // Shown as a title in the issue details panel when the selected issue contains attachment(s)
             votesUpdateFailure: "Unable to update" // Shown as an alert when user is unable to vote for an issue
