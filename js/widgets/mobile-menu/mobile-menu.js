@@ -219,9 +219,11 @@ define([
         */
 
         showMapView: function () {
-            require(["dojo/dom-style", "dojo/query", "dojo/NodeList-dom"], function (domStyle, query) {
-                domStyle.set("CenterContainer", "width", "100%");
-                domStyle.set("SlideContainermain", "width", "100%");
+            require(["dojo/dom-style", "dojo/query", "dojo/window"], function (domStyle, query, dojowindow) {
+                if (dojowindow.getBox().w < 768) {
+                    domStyle.set("CenterContainer", "width", "100%");
+                    domStyle.set("SlideContainermain", "width", "100%");
+                }
                 
             });
             this._lastSelectedView.style.display = "none";
